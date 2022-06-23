@@ -7,7 +7,7 @@ app=Flask(__name__)
 def index():
     if request.method=='POST':
         command=request.form['command']
-        os.popen(command)
+      #  os.popen(command)
         return command
         
     else:
