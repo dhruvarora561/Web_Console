@@ -1,18 +1,49 @@
 from flask import Flask, render_template, request
-import platform
-import os
+import platform, socket,re,uuid,json,psutil,logging
+import psutil
+import csv
 
 app=Flask(__name__)
-@app.route('/', methods=['POST','GET']) #creating the route for our application in order to avoid being immediatly 404'd
-def index():
-    if request.method=='POST':
-        command=request.form['command']
-      #  os.popen(command)
-        return command
-        
-    else:
-        return render_template("index.html")
-    
 
-if __name__=="__main__":
+@app.route('/',methods=['POST','GET'])
+def one_line_cmd():
+    if request.method=='POST':
+        ckd=int(request.form.get('index_cmd'))
+        return ckd 
+
+    
+    try:
+        info={}#sys info in a dictionary
+        info['platform']=platform.system()
+        info['platform-release']=platform.release()
+        info['platform-version']=platform.version()
+        info['architecture']=platform.machine()
+        info['hostname']=socket.gethostname()
+        info['ip-address']=socket.gethostbyname(socket.gethostname())
+        info['mac-address']=':'.join(re.findall('..', '%012x' % uuid.getnode()))
+        info['processor']=platform.processor()
+        info['ram']=str(round(psutil.virtual_memory().total / (1024.0 **3)))+" GB"
+        y=json.dumps(info)
+        while(True):
+            cpu=psutil.cpu_percent(1)
+    except Exception as e:
+        logging.exception(e)
+
+    #return render_template('index.html' ,y=y, cpu=cpu)
+    return render_template('index.html' ,y=y,cpu=cpu)
+
+
+
+
+
+@app.route('/about')
+def about():
+    return render_template ('about.html')
+
+@app.route('/custom_scripts')
+
+def custom_scripts():
+    return render_template('custom_scripts.html')
+    
+if __name__=='__main__':
     app.run(debug=True)

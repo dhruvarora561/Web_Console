@@ -1,18 +1,36 @@
-{%extends 'base.html'%}
-
+{% extends 'base.html' %}
 
 {%block head%}
-<title>Management console</title>
+<title>Dragon Butt</title>
 {%endblock%}
 
-{%block body%} 
 
-<p>lets create a form which takes input and then executes that in cmd</p>
-
-<form action="/" method="POST">
-    <input type="text" name="command" id="command">
-    <input type="submit" value="send command">
-
-
+{%block body%}
+<div class="jumbotron text-center">
+    <h1>Welcome to Dashboard</h1>
+    <p class="lead">Feel yourself physically present at your remote machine</p>
+</div>
+  
+<form action="{{ url_for('one_line_cmd')}}" method="POST">
+    <label for="command_index.html">Enter command</label>
+    <input type="text" name="index_cmd" id="command_index.html">
 </form>
+
+<div class="card">
+    <div class="card-body">
+      System information
+      {{ y }}
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+      cpu usage
+      {{ cpu }}
+    </div>
+</div>
+
+
+
+
+
 {%endblock%}
