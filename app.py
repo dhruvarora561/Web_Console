@@ -1,6 +1,8 @@
+from concurrent.futures import thread
+from threading import Thread
 from flask import Flask, render_template, request
 import platform, socket,re,uuid,json,psutil,logging
-import psutil
+
 import csv
 
 app=Flask(__name__)
@@ -24,12 +26,11 @@ def one_line_cmd():
         info['processor']=platform.processor()
         info['ram']=str(round(psutil.virtual_memory().total / (1024.0 **3)))+" GB"
         y=json.dumps(info)
-        while(True):
-            cpu=psutil.cpu_percent(1)
+        
     except Exception as e:
         logging.exception(e)
 
-    #return render_template('index.html' ,y=y, cpu=cpu)
+
     return render_template('index.html' ,y=y,cpu=cpu)
 
 
