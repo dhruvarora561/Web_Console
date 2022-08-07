@@ -1,4 +1,4 @@
-import psutil
+import psutil,platform
 import csv
 from datetime import datetime
 import threading
@@ -29,12 +29,17 @@ def printToCsv(data):
     writer=csv.writer(f)
     writer.writerow(data)
 
+def sysinfo():
+    return platform.node()
+
+
+def graphIt(data):
+    #use matplotlib to create the graphs?
+    pass
+
 
 
 #writeHeader()
-
-
-
 #while(True):
-#    getTime()
+ #   getTime()
 
