@@ -2,8 +2,8 @@ from concurrent.futures import thread
 from threading import Thread
 from flask import Flask, render_template, request
 import platform, socket,re,uuid,json,psutil,logging
+from cpu_usage import *
 
-import csv
 
 app=Flask(__name__)
 
@@ -31,7 +31,7 @@ def one_line_cmd():
         logging.exception(e)
 
 
-    return render_template('index.html' ,y=y,cpu=cpu)
+    return render_template('index.html' ,y=y)
 
 
 
