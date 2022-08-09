@@ -28,7 +28,13 @@ def selfhosted():
 
 @app.route('/settings', methods=['POST','GET'])
 def settings():
+    if request.method=='POST':
+        link=request.form.get('link')
+        name=request.form.get('name-link')
+        #create a database connection to save name and links then display them on the dashboard
+        #return "link and name is"+name+link
 
+        
     return render_template('settings.html')
 
 
