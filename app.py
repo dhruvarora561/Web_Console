@@ -3,7 +3,11 @@ from threading import Thread
 from flask import Flask, render_template, request
 import platform, socket,re,uuid,json,psutil,logging
 from cpu_usage import *
-
+import mysql.connector
+import os
+import dotenv
+from dotenv import load_dotenv
+load_dotenv()
 
 app=Flask(__name__)
 
@@ -28,11 +32,18 @@ def selfhosted():
 
 @app.route('/settings', methods=['POST','GET'])
 def settings():
+
     if request.method=='POST':
         link=request.form.get('link')
         name=request.form.get('name-link')
-        #create a database connection to save name and links then display them on the dashboard
-        #return "link and name is"+name+link
+        mydb=mysql.connector.connect( host='localhost', user=os.environ.get("user"),password=os.environ.get("password"), database='bifrost')
+        mycursor=mydb.cursor()
+        sql='insert into config (name, link) values (%s, %s)'
+        val=(link, name)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        
+       
 
         
     return render_template('settings.html')
