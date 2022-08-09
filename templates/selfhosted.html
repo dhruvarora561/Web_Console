@@ -1,3 +1,15 @@
 {%extends 'base.html'%}
 
+{%block head%}
+<title>bifrost</title>
+{%endblock%}
 
+{%block body%}
+<div class="jumbotron text-center">
+    <h1>Self hosted services links</h1>
+    <p class="lead">use this page to visit your self hosted services directly</p>
+</div>
+<a href="/settings">
+<button type="button" class="btn btn-dark text-end">Configure</button>
+</a>
+{%endblock%}

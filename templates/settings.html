@@ -1,5 +1,21 @@
 {%extends 'base.html'%}
 
-{%head block%} {%endblock%}
+{%block head%} 
+<title>configuration page</title>{%endblock%}
 
-{%body block%} {%endblock%}
+{%block body%} 
+<div class="jumbotron text-center">
+    <h1>Dashboard configuration</h1>
+    <p class="lead">add/remove links to your services.</p>
+</div>
+
+<form method="POST">
+<div class="input-group">
+    
+    <span class="input-group-text">links and names</span>
+    <input type="text" aria-label="links" class="form-control">
+    <input type="text" aria-label="name" class="form-control">
+    <button class="btn btn-outline-secondary>" type="submit">save</button>
+</div>
+</form>
+{%endblock%}

@@ -26,6 +26,10 @@ def custom_scripts():
 def selfhosted():
     return render_template('selfhosted.html')
 
+@app.route('/settings', methods=['POST','GET'])
+def settings():
+
+    return render_template('settings.html')
 
 
 if __name__=='__main__':
