@@ -2,6 +2,7 @@
 
 {%block head%}
 <title>Dragon Butt</title>
+<link rel="stylesheet" href="main.css">
 {%endblock%}
 
 
@@ -11,12 +12,9 @@
     <p class="lead">Feel yourself physically present at your remote machine</p>
 </div>
   
-<form action="{{ url_for('one_line_cmd')}}" method="POST">
-    <label for="command_index.html">Enter command</label>
-    <input type="text" name="index_cmd" id="command_index.html">
-</form>
 
-<div class="card">
+
+<div class="card ">
     <div class="card-body">
       System information
       {{ y }}
@@ -25,7 +23,7 @@
 <div class="card">
     <div class="card-body">
       cpu usage
-      {{ cpu }}
+      {{ cpu}}
     </div>
 </div>
 
