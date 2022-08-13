@@ -15,8 +15,13 @@ app=Flask(__name__)
 @app.route('/',methods=['POST','GET'])
 def home():
     y=sysinfo()
-    return render_template('index.html',y=y)
-
+    z=osinfo()
+    cpu=cpuinfo()
+    ram=ramusage()
+    usage=cpuusage()
+    return render_template('index.html',y=y,z=z,cpu=cpu,ram=ram,usage=usage)
+    
+    
 
 @app.route('/about')
 def about():
@@ -25,6 +30,8 @@ def about():
 @app.route('/custom_scripts')
 
 def custom_scripts():
+    if request.method=='POST':
+        pass
     return render_template('custom_scripts.html')
 
 @app.route('/hosted')
@@ -32,7 +39,7 @@ def selfhosted():
     
     mydb=mysql.connector.connect( host='localhost', user=os.environ.get("user"),password=os.environ.get("password"), database='bifrost')
     mycursor=mydb.cursor()
-    sql='select link from config where id=1'
+    sql='select link from config'
     mycursor.execute(sql)
     result=mycursor.fetchall()
     
@@ -53,6 +60,10 @@ def settings():
         mydb.commit()
     #maybe put this in try and catch block and add a response drom the db if the value is added or not.     
     return render_template('settings.html')
+
+#new_thread=Thread(target=cpuusage)
+#new_thread.start()
+
 
 
 if __name__=='__main__':
