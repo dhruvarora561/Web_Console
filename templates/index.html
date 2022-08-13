@@ -1,30 +1,51 @@
 {% extends 'base.html' %}
 
 {%block head%}
-<title>Dragon Butt</title>
+<title>Dashboard</title>
 <link rel="stylesheet" href="main.css">
 {%endblock%}
 
 
 {%block body%}
 <div class="jumbotron text-center">
-    <h1>Welcome to Dashboard</h1>
-    <p class="lead">Feel yourself physically present at your remote machine</p>
+    <h1>Welcome</h1>
+    
 </div>
   
 
 
 <div class="card ">
     <div class="card-body">
-      System information
+      Server name
       {{ y }}
     </div>
 </div>
 <div class="card">
     <div class="card-body">
-      cpu usage
-      {{ cpu}}
+      os version
+      {{ z}}
     </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    cpu model
+    {{cpu}}
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    cpu usage
+    {{usage}}
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    ram usage
+    {{ram}}
+  </div>
 </div>
 
 

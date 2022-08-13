@@ -11,16 +11,16 @@
 </div>
 
 
-<div class="card" style="width: 18rem;">
+<div class="card">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{result}}</li>
+      <a><li class="list-group-item">{{result}}</li></a> 
       <li class="list-group-item">A second item</li>
       <li class="list-group-item">A third item</li>
     </ul>
   </div>
-<!--I need to create a card and then use jinja syntax to print the values read from the table. The issue could be the number of cards,
-since each name and link combo requires its separate card. One solution is using the id parameter from the table and generating the cards-->
 <a href="/settings">
 <button type="button" class="btn btn-dark text-end">Configure</button>
 </a>
+
+
 {%endblock%}
