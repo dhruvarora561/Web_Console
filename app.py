@@ -4,11 +4,12 @@ from wsgiref.util import request_uri
 from flask import Flask, render_template, request
 import platform, socket,re,uuid,json,psutil,logging
 from cpu_usage import *
-import mysql.connector
+#import mysql.connector
 import os
-import dotenv
-from dotenv import load_dotenv
-load_dotenv()
+#import dotenv
+#from dotenv import load_dotenv
+#load_dotenv()
+import json
 
 app=Flask(__name__)
 
@@ -37,32 +38,36 @@ def custom_scripts():
 @app.route('/hosted')
 def selfhosted():
     
-    mydb=mysql.connector.connect( host='localhost', user=os.environ.get("user"),password=os.environ.get("password"), database='bifrost')
-    mycursor=mydb.cursor()
-    sql='select link from config'
-    mycursor.execute(sql)
-    result=mycursor.fetchall()
+#     mydb=mysql.connector.connect( host='localhost', user=os.environ.get("user"),password=os.environ.get("password"), database='bifrost')
+#     mycursor=mydb.cursor()
+#     sql='select link from config'
+#     mycursor.execute(sql)
+#     result=mycursor.fetchall()
     
         
-    return render_template('selfhosted.html',result=result)
+    return render_template('selfhosted.html')
 
 @app.route('/settings', methods=['POST','GET'])
 def settings():
-
+    dictionary={
+        
+    }
     if request.method=='POST':
         link=request.form.get('link')
         name=request.form.get('name-link')
-        mydb=mysql.connector.connect( host='localhost', user=os.environ.get("user"),password=os.environ.get("password"), database='bifrost')
-        mycursor=mydb.cursor()
-        sql='insert into config (name, link) values (%s, %s)'
-        val=(link, name)
-        mycursor.execute(sql, val)
-        mydb.commit()
-    #maybe put this in try and catch block and add a response drom the db if the value is added or not.     
+        
+        dictionary["name"]=name
+        dictionary["link"]=link
+        with open('links.json','a') as file:
+            
+            x=json.dumps(dictionary,indent=4)
+            
+            file.write(x)
+            
+
     return render_template('settings.html')
 
-#new_thread=Thread(target=cpuusage)
-#new_thread.start()
+
 
 
 

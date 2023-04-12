@@ -1,2 +1,4 @@
 cpu_usage.csv
 .env
+__pycache__
+venv

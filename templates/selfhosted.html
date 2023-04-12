@@ -10,17 +10,22 @@
     <p class="lead">use this page to visit your self hosted services directly</p>
 </div>
 
-
-<div class="card">
-    <ul class="list-group list-group-flush">
-      <a><li class="list-group-item">{{result}}</li></a> 
-      <li class="list-group-item">A second item</li>
-      <li class="list-group-item">A third item</li>
-    </ul>
+<div class="card" style="width: 18rem;">
+  <img src="{{ url_for('static', filename='Images/img.jpg')}}" class="card-img-top" alt="image not added">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
+</div>
+
 <a href="/settings">
 <button type="button" class="btn btn-dark text-end">Configure</button>
 </a>
 
+<script
+src="{{ url_for('static', filename='js/selfhosted.js') }}"
+type="module"
+></script>
 
 {%endblock%}
